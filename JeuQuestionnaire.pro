@@ -13,8 +13,12 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        jeuquestionnaire.cpp
+        jeuquestionnaire.cpp \
+    jeuQuestionnaire_GPIO.cpp
 
 HEADERS  += jeuquestionnaire.h
 
-FORMS    += jeuquestionnaire.ui
+FORMS    += \
+    jeuquestionnaire.ui
+
+OTHER_FILES +=

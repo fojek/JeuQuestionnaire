@@ -1,67 +1,200 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>JeuQuestionnaire</class>
- <widget class="QMainWindow" name="JeuQuestionnaire">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>320</width>
+    <height>214</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>JeuQuestionnaire</string>
+   <string>MainWindow</string>
   </property>
-  <widget class="QWidget" name="centralWidget">
-   <widget class="QPushButton" name="Vgl">
+  <property name="styleSheet">
+   <string notr="true">QMainWindow::Qicon: messagebox-question-icon</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
       <x>10</x>
       <y>10</y>
-      <width>80</width>
-      <height>16</height>
+      <width>111</width>
+      <height>31</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton:open { /* when the button has its menu open */
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #dadbde, stop: 1 #f6f7fa);
+}
+
+QPushButton::menu-indicator {
+    image: url(menu_indicator.png);
+    subcontrol-origin: padding;
+    subcontrol-position: bottom right;
+}
+
+QPushButton:hover {
+background-color : red;
+
+}
+
+QPushButton::menu-indicator:pressed, QPushButton::menu-indicator:open {
+    position: relative;
+    top: 2px; left: 2px; /* shift the arrow by 2 px */
+}
+
+</string>
+    </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>Réinitialiser</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="Equipe1">
     <property name="geometry">
      <rect>
-      <x>120</x>
-      <y>30</y>
-      <width>71</width>
-      <height>21</height>
+      <x>160</x>
+      <y>10</y>
+      <width>131</width>
+      <height>31</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>18</pointsize>
+      <weight>50</weight>
+      <italic>true</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: italic 18pt &quot;Verdana&quot;;
+background: yellow;
+border : 2px solid;
+border-radius : 8px;
+border-color : black;</string>
+    </property>
     <property name="text">
-     <string>TextLabel</string>
+     <string>Équipe1</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Equipe1_2">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>50</y>
+      <width>131</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>18</pointsize>
+      <weight>50</weight>
+      <italic>true</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: italic 18pt &quot;Verdana&quot;;
+background: yellow;
+border : 2px solid;
+border-radius : 8px;
+border-color : black;</string>
+    </property>
+    <property name="text">
+     <string>Équipe1</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Equipe1_3">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>90</y>
+      <width>131</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>18</pointsize>
+      <weight>50</weight>
+      <italic>true</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: italic 18pt &quot;Verdana&quot;;
+background: yellow;
+border : 2px solid;
+border-radius : 8px;
+border-color : black;</string>
+    </property>
+    <property name="text">
+     <string>Équipe1</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Equipe1_4">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>130</y>
+      <width>131</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>18</pointsize>
+      <weight>50</weight>
+      <italic>true</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">font: italic 18pt &quot;Verdana&quot;;
+background: yellow;
+border : 2px solid;
+border-radius : 8px;
+border-color : black;</string>
+    </property>
+    <property name="text">
+     <string>Équipe1</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
     </property>
    </widget>
   </widget>
-  <widget class="QMenuBar" name="menuBar">
+  <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>400</width>
-     <height>15</height>
+     <width>320</width>
+     <height>21</height>
     </rect>
    </property>
   </widget>
-  <widget class="QToolBar" name="mainToolBar">
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
-  </widget>
-  <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <layoutdefault spacing="6" margin="11"/>
  <resources/>
  <connections/>
 </ui>
