@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2015-12-14T19:09:07
+# Project created by QtCreator 2015-12-27T20:52:33
 #
 #-------------------------------------------------
 
@@ -8,17 +8,17 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = JeuQuestionnaire
+TARGET = CRC_Quest
 TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        jeuquestionnaire.cpp \
+        crc_quest.cpp \
     jeuQuestionnaire_GPIO.cpp
 
-HEADERS  += jeuquestionnaire.h
+HEADERS  += crc_quest.h \
+    global.h
 
-FORMS    += \
-    jeuquestionnaire.ui
+FORMS    += crc_quest.ui
 
-OTHER_FILES +=
+LIBS	 += -lwiringPi
