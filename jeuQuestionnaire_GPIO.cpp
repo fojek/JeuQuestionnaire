@@ -8,10 +8,11 @@
 #include "global.h"
 
 /* Boutons sont sur les GPIO 2, 3, 4 et 17 */
-#define BOUTON_1 0 // Pin 3
-#define BOUTON_2 1 // Pin 5
-#define BOUTON_3 2 // Pin 7
-#define BOUTON_4 3 // Pin 11
+#define BOUTON_1 0 // Pin 11
+#define BOUTON_2 1 // Pin 12
+#define BOUTON_3 2 // Pin 13
+#define BOUTON_4 3 // Pin 15
+#define BUZZER   4 // Pin 16
 
 int exit_global;
 int test;
@@ -44,6 +45,7 @@ PI_THREAD (WDT) {
 			/* Si un bouton est appuyé .. */
 			if (digitalRead(BOUTON_1) || digitalRead(BOUTON_2) || digitalRead(BOUTON_3) || digitalRead(BOUTON_4)) {
 
+                digitalWrite(BUZZER, 1);
 				/* Bouton 1 */
 				if(digitalRead(BOUTON_1)) {	
 
@@ -87,6 +89,9 @@ PI_THREAD (WDT) {
 				else {
 					/* oups. */
 				}
+                delayMicroseconds(600);
+                digitalWrite(BUZZER, 0);
+                delayMicroseconds(600);
 			}
 		} while (exit_global==1);
 		

@@ -13,6 +13,7 @@ int main(int argc, char *argv[])
     pinMode (BOUTON_2, INPUT);
     pinMode (BOUTON_3, INPUT);
     pinMode (BOUTON_4, INPUT);
+    pinMode (BUZZER, OUTPUT);
 
     piThreadCreate (WDT);
     //piThreadCreate (Request);
