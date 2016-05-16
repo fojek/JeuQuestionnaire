@@ -47,44 +47,32 @@ PI_THREAD (WDT) {
 
                 digitalWrite(BUZZER, 1);
 				/* Bouton 1 */
-				if(digitalRead(BOUTON_1)) {	
-
-					if (done[0] == 0) {
-						printf("\nPese 1...");
-						resultat[position] = 1;
-						done[0] = 1;
-						++position;
-					}
+                if(digitalRead(BOUTON_1) && (done[0] == 0)) {
+                    printf("\nPese 1...");
+                    resultat[position] = 1;
+                    done[0] = 1;
+                    ++position;
 				}
 				/* Bouton 2 */
-				else if (digitalRead(BOUTON_2)) {
-
-					if (done[1] == 0) {
-						printf("\nPese 2...");
-						resultat[position] = 2;
-						done[1] = 1;
-						++position;
-					}
+                else if (digitalRead(BOUTON_2) && (done[1] == 0)) {
+                    printf("\nPese 2...");
+                    resultat[position] = 2;
+                    done[1] = 1;
+                    ++position;
 				}
 				/* Bouton 3 */
-				else if (digitalRead(BOUTON_3)) {
-
-					if (done[2] == 0) {
-						printf("\nPese 3...");
-						resultat[position] = 3;
-						done[2] = 1;
-						++position;
-					}
+                else if (digitalRead(BOUTON_3) && (done[2] == 0)) {
+                    printf("\nPese 3...");
+                    resultat[position] = 3;
+                    done[2] = 1;
+                    ++position;
 				}
 				/* Bouton 4 */
-				else if (digitalRead(BOUTON_4)) {
-
-					if (done[3] == 0) {
-						printf("\nPese 4...");	
-						resultat[position] = 4;
-						done[3] = 1;
-						++position;
-					}
+                else if (digitalRead(BOUTON_4) && (done[3] == 0)) {
+                    printf("\nPese 4...");
+                    resultat[position] = 4;
+                    done[3] = 1;
+                    ++position;
 				}
 				else {
 					/* oups. */
