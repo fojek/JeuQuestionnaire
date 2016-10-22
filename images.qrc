@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>fojek.jpg</file>
+        <file>logoCRC.gif</file>
+    </qresource>
+</RCC>

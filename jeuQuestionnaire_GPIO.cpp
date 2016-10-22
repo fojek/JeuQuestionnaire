@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <iostream>
 #include <string.h>
 #include <errno.h>
 #include <stdlib.h>
@@ -6,109 +7,84 @@
 #include <iostream>
 #include <wiringPi.h>
 #include "global.h"
+using namespace std;
 
-/* Boutons sont sur les GPIO 2, 3, 4 et 17 */
-#define BOUTON_1 0 // Pin 11
-#define BOUTON_2 1 // Pin 12
-#define BOUTON_3 2 // Pin 13
-#define BOUTON_4 3 // Pin 15
-#define BUZZER   4 // Pin 16
+// Constantes globales
+// Boutons sont sur les GPIO 17, 18, 27, 22, 24 et 23
+const int NB_BOUTONS = 4;
+const int BOUTON[NB_BOUTONS] = {0,1,2,3}; // Ajouter les # de pin au besoin
+const int BUZZER = 4;   // Pin 16 (GPIO 23)
 
-int exit_global;
+
+// variables globales
+int exitGlobal=1;
 int test;
-int resultat[4]={0,0,0,0};
+int resultat[NB_BOUTONS]={0,0,0,0};
 
-/* Mesure d'urgence au cas ou */
-PI_THREAD (WDT) {
+// Thread d'acquisition des actions
+PI_THREAD (WDT)
+{
+    int position;   // Variable qui contient la position ouverte (1,2,3,4...)
+    int firstPass = 0;
+    int done[NB_BOUTONS] = {0,0,0,0};
 	
-	int first_pass = 0;
-	int position = 0;
-	int done[4] = {0,0,0,0};
-	
-	while(1) {
+    // Jusqu'a la mort de l'application
+    while(true)
+    {
 		
-		if (first_pass == 0) {
+        // Suite a une reinitialisation, ou au premier cycle...
+        if (firstPass == 0)
+        {
+
+            // Reinitialisation des variables
 			position = 0;
-			done[0] = 0;
-			done[1] = 0;
-			done[2] = 0;
-			done[3] = 0;
-			resultat[0] = 0;
-			resultat[1] = 0;
-			resultat[2] = 0;
-			resultat[3] = 0;
+            for(int i=0; i<NB_BOUTONS; ++i)
+            {
+                done[i] = 0;
+                resultat[i] = 0;
+            }
 			
-			first_pass = 1;
+            // Flag
+            firstPass = 1;
 		}
 		
-		do {
-			/* Si un bouton est appuyé .. */
-			if (digitalRead(BOUTON_1) || digitalRead(BOUTON_2) || digitalRead(BOUTON_3) || digitalRead(BOUTON_4)) {
+        do
+        {
+            // Variables
+            int boutonEstVrai[NB_BOUTONS] = {0,0,0,0};
+            int auMoinsUnBouton = 0;
 
+            // Si un bouton est appuyé ..
+            for(int i=0; i<NB_BOUTONS; ++i)
+            {
+                boutonEstVrai[i] = digitalRead(BOUTON[i]);
+                if(boutonEstVrai[i]) auMoinsUnBouton = 1;
+            }
+
+            if (auMoinsUnBouton)
+            {
+                for(int i=0; i<NB_BOUTONS; ++i)
+                {
+                    // Verifie l'etat des boutons
+                    if(boutonEstVrai[i] && (done[i] == 0)) {
+                        cout << "\nPese " << i << "...";
+                        resultat[position] = i+1;
+                        done[i] = 1;
+                        ++position;
+                    }
+                }
+
+                // Delai pour produire un son interessant avec le buzzer
                 digitalWrite(BUZZER, 1);
-				/* Bouton 1 */
-                if(digitalRead(BOUTON_1) && (done[0] == 0)) {
-                    printf("\nPese 1...");
-                    resultat[position] = 1;
-                    done[0] = 1;
-                    ++position;
-				}
-				/* Bouton 2 */
-                else if (digitalRead(BOUTON_2) && (done[1] == 0)) {
-                    printf("\nPese 2...");
-                    resultat[position] = 2;
-                    done[1] = 1;
-                    ++position;
-				}
-				/* Bouton 3 */
-                else if (digitalRead(BOUTON_3) && (done[2] == 0)) {
-                    printf("\nPese 3...");
-                    resultat[position] = 3;
-                    done[2] = 1;
-                    ++position;
-				}
-				/* Bouton 4 */
-                else if (digitalRead(BOUTON_4) && (done[3] == 0)) {
-                    printf("\nPese 4...");
-                    resultat[position] = 4;
-                    done[3] = 1;
-                    ++position;
-				}
-				else {
-					/* oups. */
-				}
                 delayMicroseconds(600);
                 digitalWrite(BUZZER, 0);
                 delayMicroseconds(600);
 			}
-		} while (exit_global==1);
+
+        // On attend la commande de sortie
+        } while (exitGlobal==1);
 		
-		exit_global = 0;
-		first_pass = 0;
+        exitGlobal = 0;
+        firstPass = 0;
 	}
 }
-
-/* Routine d'attente des participants
-void  attenteBouton(void) {
-	exit_global = 1;
-
-}
-
-
-PI_THREAD (Request) {
-    do {
-        attenteBouton();
-        printf("\nBoutons, dans l'ordre : %i, %i, %i et %i.\n", resultat[0], resultat[1], resultat[2], resultat[3]);
-        printf("\nBoutons : %i, %i, %i et %i.\n", digitalRead(BOUTON_1), digitalRead(BOUTON_2), digitalRead(BOUTON_3), digitalRead(BOUTON_4));
-    } while (1);
-}
-*/
-
-/*
-	delay (1) ;    
-	pinMode (0, OUTPUT);
-    digitalWrite (100 + row, 0);
-	delayMicroseconds(500);
-	piThreadCreate (attenteBouton);
-	delay (2000);
-*/

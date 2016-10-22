@@ -13,12 +13,18 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        crc_quest.cpp \
-    jeuQuestionnaire_GPIO.cpp
+    jeuQuestionnaire_GPIO.cpp \
+    crcQuest.cpp
 
-HEADERS  += crc_quest.h \
-    global.h
+HEADERS  += \
+    global.h \
+    crcQuest.h \
+    ui_about.h
 
-FORMS    += crc_quest.ui
+FORMS    += crc_quest.ui \
+    about.ui
 
 LIBS	 += -lwiringPi
+
+RESOURCES += \
+    images.qrc

@@ -5,6 +5,7 @@
 
 namespace Ui {
 class CRC_Quest;
+class About;
 }
 
 class CRC_Quest : public QMainWindow
@@ -20,9 +21,14 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void on_actionA_propos_triggered();
+
+    void on_actionQuitter_triggered();
+
 private:
     Ui::CRC_Quest *ui;
     QTimer *refreshHMI;
+    QDialog *about;
     int timerCount;
 };
 
